@@ -10,7 +10,8 @@ export default function Home() {
   const [modalIsHidden, setModalIsHidden] = useState(true);
   const [startDateIsHidden, setStartDateIsHidden] = useState(true);
   const dispatch = useDispatch();
-
+  const birthDateId = "birth-date";
+  const startDateId = "start-date";
   const dateMenu = useRef(null);
 
   const setStartDateIsHiddenToTrue = (e) => {
@@ -36,8 +37,8 @@ export default function Home() {
   function saveEmployee() {
     const firstName = document.getElementById("first-name");
     const lastName = document.getElementById("last-name");
-    const dateOfBirth = document.getElementById("date-of-birth");
-    const startDate = document.getElementById("start-date");
+    const dateOfBirth = document.getElementById(`${birthDateId}`);
+    const startDate = document.getElementById(`${startDateId}`);
     const department = document.getElementById("department");
     const street = document.getElementById("street");
     const city = document.getElementById("city");
@@ -75,10 +76,10 @@ export default function Home() {
           <input type="text" id="last-name" />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <DatePicker id="birth-date" yearsForward={2}></DatePicker>
+          <DatePicker id={birthDateId} yearsForward={2}></DatePicker>
           <label htmlFor="start-date">Start Date</label>
 
-          <DatePicker id="start-date"></DatePicker>
+          <DatePicker id={startDateId}></DatePicker>
           <fieldset className="address">
             <legend>Address</legend>
 
