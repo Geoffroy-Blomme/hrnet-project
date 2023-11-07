@@ -41,5 +41,5 @@ export const store = configureStore({
     }),
 });
 
-localStorage.removeItem("persist:root");
+//localStorage.removeItem("persist:root");
 export const persistor = persistStore(store);
