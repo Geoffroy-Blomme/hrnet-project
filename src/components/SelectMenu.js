@@ -1,20 +1,21 @@
 import { createElement } from "react";
-import { states } from "./../utils/states";
+import Select from "react-select";
 
-export default function SelectMenu() {
+export default function SelectMenu(props) {
+  let { id, onChangeHandler, options } = props;
+
   return (
     <>
-      {states.map((state, index) => {
-        const option = createElement(
-          "option",
-          {
-            value: state.abbreviation,
-            key: index,
-          },
-          state.name
-        );
-        return option;
-      })}
+      <Select
+        inputId={id}
+        isSearchable={false}
+        options={options}
+        defaultValue={options[0]}
+        onChange={(choice) => {
+          onChangeHandler(choice.value);
+          console.log(choice.value);
+        }}
+      ></Select>
     </>
   );
 }

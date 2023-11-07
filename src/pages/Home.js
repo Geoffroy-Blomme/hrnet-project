@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addEmployee } from "../features/EmployeeList";
 import Modal from "../components/Modal";
 import { DatePicker } from "oc-gb-date-picker";
+import { states } from "./../utils/states";
 
 export default function Home() {
   const [modalIsHidden, setModalIsHidden] = useState(true);
@@ -13,6 +14,26 @@ export default function Home() {
   const birthDateId = "birth-date";
   const startDateId = "start-date";
   const dateMenu = useRef(null);
+  const stateSelectOptions = states.map((state, index) => {
+    return { label: state.name, value: state.abbreviation };
+  });
+  const stateSelectId = "state";
+  const [stateSelectValue, setStateSelectValue] = useState(
+    states[0].abbreviation
+  );
+
+  const departmentSelectOptions = [
+    { value: "Sales", label: "Sales" },
+    { value: "Marketing", label: "Marketing" },
+    { value: "Engineering", label: "Engineering" },
+    { value: "Human Resources", label: "Human Resources" },
+    { value: "Legal", label: "Legal" },
+  ];
+
+  const departmentSelectId = "department";
+  const [departmentSelectValue, setDepartmentSelectValue] = useState(
+    departmentSelectOptions[0].label
+  );
 
   const setStartDateIsHiddenToTrue = (e) => {
     if (
@@ -39,10 +60,8 @@ export default function Home() {
     const lastName = document.getElementById("last-name");
     const dateOfBirth = document.getElementById(`${birthDateId}`);
     const startDate = document.getElementById(`${startDateId}`);
-    const department = document.getElementById("department");
     const street = document.getElementById("street");
     const city = document.getElementById("city");
-    const state = document.getElementById("state");
     const zipCode = document.getElementById("zip-code");
 
     const employee = {
@@ -50,10 +69,10 @@ export default function Home() {
       lastName: lastName.value,
       dateOfBirth: dateOfBirth.value,
       startDate: startDate.value,
-      department: department.value,
+      department: departmentSelectValue,
       street: street.value,
       city: city.value,
-      state: state.value,
+      state: stateSelectValue,
       zipCode: zipCode.value,
     };
     dispatch(addEmployee(employee));
@@ -68,7 +87,7 @@ export default function Home() {
       <div className="container">
         <Link to="/employee-list">View Current Employees</Link>
         <h2>Create Employee</h2>
-        <form action="#" id="create-employee">
+        <form action="#" id="create-employee" style={{ marginBottom: "20px" }}>
           <label htmlFor="first-name">First Name</label>
           <input type="text" id="first-name" />
 
@@ -80,7 +99,10 @@ export default function Home() {
           <label htmlFor="start-date">Start Date</label>
 
           <DatePicker id={startDateId}></DatePicker>
-          <fieldset className="address">
+          <fieldset
+            className="address"
+            style={{ padding: "10px 80px 10px 20px" }}
+          >
             <legend>Address</legend>
 
             <label htmlFor="street">Street</label>
@@ -90,22 +112,22 @@ export default function Home() {
             <input id="city" type="text" />
 
             <label htmlFor="state">State</label>
-            <select name="state" id="state">
-              <SelectMenu></SelectMenu>
-            </select>
+            <SelectMenu
+              id={stateSelectId}
+              onChangeHandler={setStateSelectValue}
+              options={stateSelectOptions}
+            ></SelectMenu>
 
             <label htmlFor="zip-code">Zip Code</label>
             <input id="zip-code" type="number" />
           </fieldset>
 
           <label htmlFor="department">Department</label>
-          <select name="department" id="department">
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
+          <SelectMenu
+            id={departmentSelectId}
+            onChangeHandler={setDepartmentSelectValue}
+            options={departmentSelectOptions}
+          ></SelectMenu>
         </form>
 
         <button onClick={saveEmployee}>Save</button>
