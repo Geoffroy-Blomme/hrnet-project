@@ -6974,14 +6974,15 @@
   "resolved" "https://registry.npmjs.org/obuf/-/obuf-1.1.2.tgz"
   "version" "1.1.2"
 
-"oc-gb-date-picker@^0.4.1":
-  "integrity" "sha512-Zvspgjx8W4SGkT550DaYuN14rgA5mn7TpwzfKWd54QFpEaG5LcEc0wBObyeZJ7ZswPeCOOqQMPGd4UiE1rPpxA=="
-  "resolved" "https://registry.npmjs.org/oc-gb-date-picker/-/oc-gb-date-picker-0.4.1.tgz"
-  "version" "0.4.1"
+"oc-gb-date-picker@^0.5.3":
+  "integrity" "sha512-nXXA5d5SU7CKkZsYSQYiOxf4kAQgAIM+4OvNkxow6QNnOaBHauqb6Xc2OIL7AiNLDwq6IytQOoO/GWqMn/YymQ=="
+  "resolved" "https://registry.npmjs.org/oc-gb-date-picker/-/oc-gb-date-picker-0.5.3.tgz"
+  "version" "0.5.3"
   dependencies:
     "@testing-library/jest-dom" "^5.17.0"
     "@testing-library/react" "^13.4.0"
     "@testing-library/user-event" "^13.5.0"
+    "prop-types" "^15.8.1"
     "web-vitals" "^2.1.4"
 
 "on-finished@2.4.1":
